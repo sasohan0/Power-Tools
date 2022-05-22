@@ -24,6 +24,7 @@ const Purchase = () => {
       address: address,
       phone: phone,
       orderQuantity: orderQuantity,
+      paid: false,
     };
 
     if (orderQuantity > toolDetail.minOrder) {

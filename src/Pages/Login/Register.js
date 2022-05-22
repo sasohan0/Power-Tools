@@ -4,10 +4,11 @@ import {
   useSignInWithGoogle,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
-import auth from "../../firebase.init";
+
 import { useForm } from "react-hook-form";
 
 import { Link, useNavigate } from "react-router-dom";
+import auth from "../../firebase.init";
 
 const Register = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
