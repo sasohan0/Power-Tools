@@ -6,12 +6,13 @@ import { signOut } from "firebase/auth";
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
+  console.log(user.email);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/orders?user=${user.email}`)
+      fetch(`http://localhost:5000/orders?email=${user.email}`)
         .then((res) => res.json())
         .then((data) => setOrders(data));
     }
@@ -25,10 +26,11 @@ const MyOrders = () => {
           <thead>
             <tr>
               <th></th>
-              <th>Name</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Treatment</th>
+              <th>Customer</th>
+
+              <th>Phone</th>
+              <th>Quantity</th>
+              <th>Total</th>
               <th>Payment</th>
             </tr>
           </thead>
@@ -36,10 +38,11 @@ const MyOrders = () => {
             {orders.map((order, index) => (
               <tr key={order._id}>
                 <th>{index + 1}</th>
-                <td>{order.email}</td>
-                <td>{order.address}</td>
-                <td>{order.phone}</td>
-                <td>{order.orderQuantity}</td>
+                <td>{order?.email}</td>
+
+                <td>{order?.phone}</td>
+                <td>{order?.orderQuantity}</td>
+                <td>{order?.totalPrice}</td>
                 <td>
                   {order.totalPrice && !order.paid && (
                     <Link to={`/dashboard/payment/${order._id}`}>
