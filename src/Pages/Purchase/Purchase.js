@@ -24,10 +24,14 @@ const Purchase = () => {
       address: address,
       phone: phone,
       orderQuantity: orderQuantity,
+      totalPrice: parseInt(orderQuantity) * parseInt(toolDetail.price),
       paid: false,
     };
 
-    if (orderQuantity > toolDetail.minOrder) {
+    if (
+      orderQuantity > toolDetail.minOrder &&
+      orderQuantity < toolDetail.available
+    ) {
       let { available, ...rest } = toolDetail;
       available = parseInt(available) - parseInt(orderQuantity);
 
@@ -46,21 +50,21 @@ const Purchase = () => {
         .then((data) => {
           console.log(data);
         });
+      await fetch("http://localhost:5000/orders", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(order),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          alert("successfully added");
+        });
     } else {
       alert("enter valid quantity");
     }
-    await fetch("http://localhost:5000/orders", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(order),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        alert("successfully added");
-      });
   };
   return (
     <div className="">
