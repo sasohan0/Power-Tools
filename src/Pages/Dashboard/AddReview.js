@@ -15,7 +15,7 @@ const AddReview = () => {
           setReviews(data);
         });
     }
-  }, [user]);
+  }, [user, reviews]);
   const handlePostReview = async (e) => {
     e.preventDefault();
     const reviewText = e.target.review.value;
@@ -41,9 +41,10 @@ const AddReview = () => {
   };
   return (
     <div>
-      <div>
-        <h1 className="text-2xl">add a review</h1>
+      <div className="w-fit mx-auto">
+        <h1 className="text-2xl my-4 flex justify-center">Add a review</h1>
         <form
+          className=""
           onSubmit={(e) => {
             handlePostReview(e);
           }}
@@ -72,13 +73,15 @@ const AddReview = () => {
           />{" "}
         </form>
       </div>
-      <div>
+      <div className="grid sm:grid-cols-1 lg:grid-cols-2  gap-10">
         {reviews.map((review) => (
-          <div class="card w-96 bg-base-100 shadow-xl">
-            <div class="card-body">
-              <h2 class="card-title">{review.customerName}</h2>
-              <p>{review.opinion}</p>
-              <p>Rating :{review.rating}</p>
+          <div>
+            <div class="card w-96 bg-base-100 shadow-xl">
+              <div class="card-body">
+                <h2 class="card-title">{review.customerName}</h2>
+                <p>{review.opinion}</p>
+                <p>Rating :{review.rating}</p>
+              </div>
             </div>
           </div>
         ))}

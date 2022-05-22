@@ -16,20 +16,22 @@ const MyOrders = () => {
         .then((res) => res.json())
         .then((data) => setOrders(data));
     }
-  }, [user]);
+  }, [user, orders]);
 
   return (
     <div>
-      <h2>My Orders: {orders.length}</h2>
-      <div className="overflow-x-auto">
+      <h2 className="flex justify-center text-3xl">
+        My Orders: {orders.length}
+      </h2>
+      <div className="overflow-x-auto ">
         <table className="table w-full">
           <thead>
             <tr>
               <th></th>
-              <th>Customer</th>
+              <th>Photo</th>
 
-              <th>Phone</th>
-              <th>Quantity</th>
+              <th className="sm:hidden  ">Product</th>
+              <th className="sm:hidden">Quantity</th>
               <th>Total</th>
               <th>Payment</th>
             </tr>
@@ -38,10 +40,16 @@ const MyOrders = () => {
             {orders.map((order, index) => (
               <tr key={order._id}>
                 <th>{index + 1}</th>
-                <td>{order?.email}</td>
+                <td>
+                  <img
+                    style={{ width: "80px", height: "80px" }}
+                    src={order?.img}
+                    alt=""
+                  />
+                </td>
 
-                <td>{order?.phone}</td>
-                <td>{order?.orderQuantity}</td>
+                <td className="sm:hidden ">{order?.name}</td>
+                <td className="sm:hidden ">{order?.orderQuantity}</td>
                 <td>{order?.totalPrice}</td>
                 <td>
                   {order.totalPrice && !order.paid && (

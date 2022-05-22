@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { LockClosedIcon } from "@heroicons/react/solid";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const Purchase = () => {
+  const [user, loading] = useAuthState(auth);
   const { toolId } = useParams();
   const [toolDetail, setToolDetail] = useState({});
 
@@ -20,6 +23,8 @@ const Purchase = () => {
     const phone = e.target?.phone.value;
     const orderQuantity = e.target?.orderQuantity.value;
     const order = {
+      name: toolDetail.name,
+      img: toolDetail.img,
       email: email,
       address: address,
       phone: phone,
@@ -105,9 +110,10 @@ const Purchase = () => {
                   name="email"
                   type="email"
                   autoComplete="email"
+                  disabled
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Email address"
+                  defaultValue={user?.email}
                 />
 
                 <input
