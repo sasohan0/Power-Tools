@@ -91,7 +91,7 @@ const MyOrders = () => {
                         </button>
                       </Link>
                       <button
-                        onClick={() => handleOrderCancel(orders._id)}
+                        onClick={() => handleOrderCancel(order._id)}
                         className="btn text-black btn-xs bg-red-500"
                       >
                         Cancel
