@@ -10,7 +10,7 @@ const Purchase = () => {
   const [toolDetail, setToolDetail] = useState({});
 
   useEffect(() => {
-    const url = `http://localhost:5000/tools/${toolId}`;
+    const url = `https://radiant-fortress-52880.herokuapp.com/tools/${toolId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setToolDetail(data));
@@ -44,18 +44,21 @@ const Purchase = () => {
 
       setToolDetail(newToolDetail);
       const updatedQuantity = { available };
-      await fetch(`http://localhost:5000/tools/${toolId}`, {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(updatedQuantity),
-      })
+      await fetch(
+        `https://radiant-fortress-52880.herokuapp.com/tools/${toolId}`,
+        {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(updatedQuantity),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
         });
-      await fetch("http://localhost:5000/orders", {
+      await fetch("https://radiant-fortress-52880.herokuapp.com/orders", {
         method: "POST",
         headers: {
           "content-type": "application/json",

@@ -8,12 +8,15 @@ const MyProfile = () => {
 
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/users?email=${user.email}`, {
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
+      fetch(
+        `https://radiant-fortress-52880.herokuapp.com/users?email=${user.email}`,
+        {
+          method: "GET",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -38,13 +41,16 @@ const MyProfile = () => {
       linkedIn: linkedIn,
     };
     console.log(email);
-    await fetch(`http://localhost:5000/users?email=${email}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(profile),
-    })
+    await fetch(
+      `https://radiant-fortress-52880.herokuapp.com/users?email=${email}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(profile),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         alert("successfully updated");
@@ -57,9 +63,9 @@ const MyProfile = () => {
         <span className="font-bold">{user?.displayName}</span>{" "}
       </h1>
       <div>
-        <div class="card w-96 bg-base-100 shadow-xl">
-          <div class="card-body">
-            <h2 class="card-title">Profile</h2>
+        <div className="card w-96 bg-base-100 shadow-xl">
+          <div className="card-body">
+            <h2 className="card-title">Profile</h2>
             <p>
               <span className="text-primary">Email</span> : {user?.email}
             </p>

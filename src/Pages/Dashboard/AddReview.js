@@ -8,7 +8,9 @@ const AddReview = () => {
   console.log(user.email);
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/userReviews?email=${user.email}`)
+      fetch(
+        `https://radiant-fortress-52880.herokuapp.com/userReviews?email=${user.email}`
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -26,7 +28,7 @@ const AddReview = () => {
       opinion: reviewText,
       rating: rating,
     };
-    await fetch("http://localhost:5000/reviews", {
+    await fetch("https://radiant-fortress-52880.herokuapp.com/reviews", {
       method: "POST",
       headers: {
         "content-type": "application/json",

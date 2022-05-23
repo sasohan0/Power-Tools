@@ -23,7 +23,14 @@ function App() {
     <div className="max-w-7xl mx-auto px-12">
       <Navbar></Navbar>
       <Routes>
-        <Route path="/tools/:toolId" element={<Purchase></Purchase>}></Route>
+        <Route
+          path="/tools/:toolId"
+          element={
+            <RequireAuth>
+              <Purchase></Purchase>
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Register />} />

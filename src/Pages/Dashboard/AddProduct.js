@@ -22,7 +22,7 @@ const AddProduct = () => {
     };
 
     // send to your database
-    fetch("http://localhost:5000/tools", {
+    fetch("https://radiant-fortress-52880.herokuapp.com/tools", {
       method: "POST",
       headers: {
         "content-type": "application/json",

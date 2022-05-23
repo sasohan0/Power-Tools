@@ -9,7 +9,7 @@ const User = ({ user, refetch }) => {
   const [admin, adminLoading] = useAdmin(user1);
   const { email, role } = user;
   const handleMakeAdmin = () => {
-    fetch(`http://localhost:5000/user/admin/${email}`, {
+    fetch(`https://radiant-fortress-52880.herokuapp.com/user/admin/${email}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
