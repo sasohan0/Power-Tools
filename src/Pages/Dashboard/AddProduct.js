@@ -16,9 +16,9 @@ const AddProduct = () => {
       name: data.name,
       img: data.image,
       shortDescription: data.shortDescription,
-      minOrder: data.minOrder,
-      available: data.available,
-      price: data.price,
+      minOrder: parseInt(data.minOrder),
+      available: parseInt(data.available),
+      price: parseInt(data.price),
     };
 
     // send to your database

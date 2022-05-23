@@ -3,11 +3,10 @@ import { loadStripe } from "@stripe/stripe-js";
 import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-
 import CheckoutForm from "./CheckoutForm";
 
 const stripePromise = loadStripe(
-  "pk_test_51KzgdMJVa6zVY99CaGts94G8qqJirQWPMAET7VBqrec0wWSxhuuRtgQNPA3SuwzjQKOv6QWwjgMWEfZ83N1qLNUU00IX1ciL6e"
+  "pk_test_51L2VoOB8aLgAG5B05GlyAHhMSChwwquIJuxdO2hRMwK7TAH1gjMeeTFuF4wSOtFmAJEUYJmTGODvxLfWH8cqRauh00Mxhy0MGV"
 );
 
 const Payment = () => {
