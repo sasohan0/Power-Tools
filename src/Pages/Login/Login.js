@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import auth from "../../firebase.init";
+import useToken from "../Hooks/useToken";
 
 const Login = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -19,15 +20,18 @@ const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
+  const [token] = useToken(user || gUser);
+
   let signInError;
   const navigate = useNavigate();
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
 
-  if (user) {
-    navigate(from, { replace: true });
-    console.log(user);
-  }
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, from, navigate]);
 
   if (loading || gLoading) {
     return <p>loading...</p>;
@@ -115,7 +119,7 @@ const Login = () => {
                 )}
               </label>
             </div>
-
+            {signInError}
             <input
               className="btn w-full max-w-xs text-white"
               type="submit"
