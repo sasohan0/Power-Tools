@@ -17,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ManageProducts from "./Pages/Dashboard/ManageProducts";
 import AddProduct from "./Pages/Dashboard/AddProduct";
 import Payment from "./Pages/Dashboard/Payment";
+import ManageOrders from "./Pages/Dashboard/ManageOrders";
 
 function App() {
   return (
@@ -70,6 +71,14 @@ function App() {
             element={
               <RequireAdmin>
                 <ManageProducts></ManageProducts>
+              </RequireAdmin>
+            }
+          ></Route>
+          <Route
+            path="manageOrders"
+            element={
+              <RequireAdmin>
+                <ManageOrders></ManageOrders>
               </RequireAdmin>
             }
           ></Route>

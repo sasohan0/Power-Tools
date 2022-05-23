@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { LockClosedIcon } from "@heroicons/react/solid";
+
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import { toast } from "react-toastify";
 
 const Purchase = () => {
   const [user, loading] = useAuthState(auth);
@@ -24,6 +25,7 @@ const Purchase = () => {
     const orderQuantity = e.target?.orderQuantity.value;
     const order = {
       name: toolDetail.name,
+      userName: user?.displayName,
       img: toolDetail.img,
       email: email,
       address: address,
@@ -34,8 +36,8 @@ const Purchase = () => {
     };
 
     if (
-      orderQuantity > toolDetail.minOrder &&
-      orderQuantity < toolDetail.available
+      orderQuantity >= toolDetail.minOrder &&
+      orderQuantity <= toolDetail.available
     ) {
       let { available, ...rest } = toolDetail;
       available = parseInt(available) - parseInt(orderQuantity);
@@ -68,10 +70,10 @@ const Purchase = () => {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          alert("successfully added");
+          toast.success("successfully ordered");
         });
     } else {
-      alert("enter valid quantity");
+      toast.error("enter valid quantity");
     }
   };
   return (
@@ -92,13 +94,17 @@ const Purchase = () => {
         <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
           <div className="max-w-md w-full space-y-8">
             <div>
-              <img
-                className="mx-auto h-12 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                alt="Workflow"
-              />
-              <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                Book Your Order Now
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-24 w-24 mx-auto mt-6"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+              </svg>
+              <h2 className=" text-center text-3xl font-extrabold text-gray-900">
+                Book Your Order Now <br />
+                <span className="text-success">{user?.displayName}</span>
               </h2>
             </div>
             <form
@@ -153,7 +159,7 @@ const Purchase = () => {
               <input
                 type="submit"
                 value="Place Order"
-                className="btn btn-secondary w-full"
+                className="btn btn-dark w-full"
               />
             </form>
           </div>

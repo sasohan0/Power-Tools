@@ -30,7 +30,10 @@ const Payment = () => {
     <div>
       <div className="card w-50 max-w-md bg-base-100 shadow-xl my-12">
         <div className="card-body">
-          <p className="text-success font-bold">Hello, {order.email}</p>
+          <p className=" font-bold">
+            Greetings,{" "}
+            <span className="text-2xl text-primary">{order.userName}</span>
+          </p>
           <h2 className="card-title">Please Pay for {order.name}</h2>
           <p>
             <img src={order.img} alt="" />
