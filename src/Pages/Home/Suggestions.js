@@ -1,7 +1,10 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
+import auth from "../../firebase.init";
 
 const Suggestions = () => {
+  const [user, loading] = useAuthState(auth);
   const handleSuggestion = async (e) => {
     const email = e.target.email.value;
     const opinion = e.target.opinion.value;
@@ -20,6 +23,7 @@ const Suggestions = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+
         toast.success("suggestion added.You are awesome !");
       });
   };
@@ -41,6 +45,7 @@ const Suggestions = () => {
                   <input
                     type="text"
                     name="email"
+                    defaultValue={user && user.email}
                     placeholder="email or name"
                     className="input input-bordered"
                   />
@@ -58,7 +63,7 @@ const Suggestions = () => {
                 </div>
                 <div className="form-control mt-6">
                   <input
-                    className="btn btn-primary"
+                    className="btn btn-dark"
                     type="submit"
                     value="Send Suggestion"
                   />

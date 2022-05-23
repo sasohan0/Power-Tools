@@ -19,7 +19,7 @@ const Tool = ({ tool }) => {
         <p>Price: $ {tool.price}</p>
         <button
           onClick={() => handleBuyNow(tool._id)}
-          className=" btn btn-primary"
+          className=" btn btn-dark"
         >
           Buy Now
         </button>

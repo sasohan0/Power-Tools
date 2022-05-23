@@ -15,7 +15,7 @@ const Reviews = () => {
     }
   }, [user]);
   return (
-    <div>
+    <div className="mt-10" id="reviews">
       <h1 className="flex justify-center text-4xl">Customer Reviews</h1>
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {reviews.map((review) => (

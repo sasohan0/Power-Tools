@@ -3,11 +3,11 @@ import React from "react";
 const BusinessInsight = () => {
   return (
     <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-      <div className="card w-96 bg-rose-200 shadow-xl">
+      <div className="card w-96 bg-gray-500 shadow-xl">
         <div className="card-body">
-          <h2 className="card-title text-green-500">Top Manufacturer !</h2>
-          <p className="text-dark-600">More than 2M supplies last month !!</p>
-          <div className="card-actions text-green-600 justify-center">
+          <h2 className="card-title text-white">Top Manufacturer !</h2>
+          <p className="text-slate-200">More than 2M supplies last month !!</p>
+          <div className="card-actions text-white justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-24 w-24"
@@ -23,11 +23,11 @@ const BusinessInsight = () => {
           </div>
         </div>
       </div>
-      <div className="card w-96 bg-rose-200 shadow-xl">
+      <div className="card w-96 bg-gray-500 shadow-xl">
         <div className="card-body">
-          <h2 className="card-title text-green-500">Best in Quality !</h2>
-          <p className="text-dark-600">All Products are of best quality !!</p>
-          <div className="card-actions text-green-600 justify-center">
+          <h2 className="card-title text-white">Best in Quality !</h2>
+          <p className="text-slate-200">All Products are of best quality !!</p>
+          <div className="card-actions text-white justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-24 w-24"
@@ -45,13 +45,11 @@ const BusinessInsight = () => {
           </div>
         </div>
       </div>
-      <div className="card w-96 bg-rose-200 shadow-xl">
+      <div className="card w-96 bg-gray-500 shadow-xl">
         <div className="card-body">
-          <h2 className="card-title text-green-500">
-            Sincere About Your Time !
-          </h2>
-          <p className="text-dark-600">On Time shipping !!</p>
-          <div className="card-actions text-green-600 justify-center">
+          <h2 className="card-title text-white">Sincere About Your Time !</h2>
+          <p className="text-slate-200">On Time shipping !!</p>
+          <div className="card-actions text-white justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-24 w-24"

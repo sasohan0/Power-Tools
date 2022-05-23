@@ -16,7 +16,9 @@ const Banner = () => {
             We are a manufacturing company. We manufacture quality products and
             provide service on time
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          <a href="#reviews" className="btn btn-dark">
+            See Reviews
+          </a>
         </div>
       </div>
     </div>
