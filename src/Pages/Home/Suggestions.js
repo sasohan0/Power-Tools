@@ -29,7 +29,63 @@ const Suggestions = () => {
   };
   return (
     <div className="mt-10">
-      <div className="hero min-h-screen bg-base-200">
+      <div
+        className="hero min-h-screen "
+        style={{
+          backgroundImage: `url("suggestion.jpg")`,
+        }}
+      >
+        <div className="hero-overlay bg-opacity-60"></div>
+        <div className="hero-content text-center text-neutral-content ">
+          <div className="max-w-md bg-gradient-to-r from-slate-500 to-transparent p-4 rounded-lg">
+            <h1 className="text-5xl text-white  font-bold">Your Suggestions</h1>
+            <p className=" text-2xl text-white py-6">
+              Suggest Us How to Improve.
+            </p>
+          </div>
+          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+            <form
+              className="text-black"
+              onSubmit={(e) => handleSuggestion(e)}
+              action=""
+            >
+              <div className="card-body">
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Your email or name</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="email"
+                    defaultValue={user && user.email}
+                    placeholder="email or name"
+                    className="input input-bordered"
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Suggestion</span>
+                  </label>
+                  <textarea
+                    type="text"
+                    name="opinion"
+                    placeholder="suggestion"
+                    className="input input-bordered"
+                  />
+                </div>
+                <div className="form-control mt-6">
+                  <input
+                    className="btn btn-dark"
+                    type="submit"
+                    value="Send Suggestion"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      {/* <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Your Suggestions</h1>
@@ -72,7 +128,7 @@ const Suggestions = () => {
             </form>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

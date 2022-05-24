@@ -18,6 +18,8 @@ import ManageProducts from "./Pages/Dashboard/ManageProducts";
 import AddProduct from "./Pages/Dashboard/AddProduct";
 import Payment from "./Pages/Dashboard/Payment";
 import ManageOrders from "./Pages/Dashboard/ManageOrders";
+import Blogs from "./Pages/Blogs/Blogs";
+import Portfolio from "./Pages/Portfolio/Portfolio";
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Register />} />
+        <Route path="blogs" element={<Blogs></Blogs>} />
+        <Route path="portfolio" element={<Portfolio></Portfolio>} />
         <Route
           path="dashboard"
           element={

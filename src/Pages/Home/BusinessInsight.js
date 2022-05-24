@@ -3,7 +3,7 @@ import React from "react";
 const BusinessInsight = () => {
   return (
     <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-      <div className="card w-96 bg-gray-500 shadow-xl">
+      <div className="card w-96 bg-gradient-to-r from-primary to-transparent shadow-xl">
         <div className="card-body">
           <h2 className="card-title text-white">Top Manufacturer !</h2>
           <p className="text-slate-200">More than 2M supplies last month !!</p>
@@ -23,7 +23,7 @@ const BusinessInsight = () => {
           </div>
         </div>
       </div>
-      <div className="card w-96 bg-gray-500 shadow-xl">
+      <div className="card w-96 bg-gradient-to-r from-primary to-transparent shadow-xl">
         <div className="card-body">
           <h2 className="card-title text-white">Best in Quality !</h2>
           <p className="text-slate-200">All Products are of best quality !!</p>
@@ -45,7 +45,7 @@ const BusinessInsight = () => {
           </div>
         </div>
       </div>
-      <div className="card w-96 bg-gray-500 shadow-xl">
+      <div className="card w-96 bg-gradient-to-r from-primary to-transparent shadow-xl">
         <div className="card-body">
           <h2 className="card-title text-white">Sincere About Your Time !</h2>
           <p className="text-slate-200">On Time shipping !!</p>

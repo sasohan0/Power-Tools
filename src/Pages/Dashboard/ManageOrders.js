@@ -13,7 +13,7 @@ const ManageOrders = () => {
 
   useEffect(() => {
     if (user) {
-      fetch(`https://radiant-fortress-52880.herokuapp.com/adminOrders`, {
+      fetch(`http://localhost:5000/adminOrders`, {
         method: "GET",
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -31,10 +31,34 @@ const ManageOrders = () => {
     }
   }, [user, orders]);
 
+  const handleShipped = async (id, order) => {
+    const shipped = {
+      order: id,
+      transactionId: order.transactionId,
+      address: order.address,
+    };
+    const confirmed = window.confirm("sure to approve?");
+    if (confirmed) {
+      await fetch(`http://localhost:5000/adminOrders/${id}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify(shipped),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          toast.success("order approved for shipping");
+          console.log(data);
+        });
+    }
+  };
+
   const handleOrderCancel = (id) => {
     const confirmed = window.confirm("Sure to cancel?");
     if (confirmed) {
-      fetch(`https://radiant-fortress-52880.herokuapp.com/orders/${id}`, {
+      fetch(`http://localhost:5000/orders/${id}`, {
         method: "DELETE",
         headers: {
           "content-type": "application/json",
@@ -93,10 +117,31 @@ const ManageOrders = () => {
                       </button>
                     </>
                   )}
-                  {order?.totalPrice && order?.paid && (
+                  {order?.totalPrice && order?.paid && !order?.shipped && (
                     <div>
                       <p>
                         <span className="text-success">Pending</span>
+                      </p>
+                      <p>
+                        Transaction id: <br />
+                        <span className="text-red-400">
+                          {order.transactionId}
+                        </span>
+                      </p>
+                      <button
+                        onClick={() => handleShipped(order._id, order)}
+                        className="btn text-black btn-xs bg-green-500"
+                      >
+                        Approve
+                      </button>
+                    </div>
+                  )}
+                  {order?.shipped && (
+                    <div>
+                      <p>
+                        <span className="text-success">
+                          Approved for Shipping
+                        </span>
                       </p>
                       <p>
                         Transaction id: <br />
