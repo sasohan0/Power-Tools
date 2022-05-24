@@ -19,11 +19,10 @@ const CheckoutForm = ({ order }) => {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          'authorization': `Bearer ${localStorage.getItem("accessToken")}`,
         },
         body: JSON.stringify({ totalPrice }),
-      }
-    )
+      }) 
       .then((res) => res.json())
       .then((data) => {
         if (data?.clientSecret) {
@@ -31,6 +30,8 @@ const CheckoutForm = ({ order }) => {
         }
       });
   }, [totalPrice]);
+    
+     
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -63,7 +64,8 @@ const CheckoutForm = ({ order }) => {
             email: email,
           },
         },
-      });
+      },
+      );
 
     if (intentError) {
       setCardError(intentError?.message);
@@ -83,7 +85,7 @@ const CheckoutForm = ({ order }) => {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          'authorization': `Bearer ${localStorage.getItem("accessToken")}`
         },
         body: JSON.stringify(payment),
       })

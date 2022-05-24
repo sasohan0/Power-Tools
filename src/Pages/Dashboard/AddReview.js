@@ -49,7 +49,7 @@ const AddReview = () => {
     }
   };
   return (
-    <div className="w-56 sm:full ">
+    <div className="w-56 sm:w-full ">
       <div className="sm:w-fit mx-auto">
         <h1 className="text-2xl my-4 flex justify-center">Add a review</h1>
         <form
