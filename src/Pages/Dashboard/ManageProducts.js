@@ -5,6 +5,8 @@ import useAdmin from "../Hooks/useAdmin";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import Loading from "../Shared/Loading";
+import Swal from "sweetalert2";
 
 const ManageProducts = () => {
   const [user1] = useAuthState(auth);
@@ -23,25 +25,35 @@ const ManageProducts = () => {
     }).then((res) => res.json())
   );
   if (isLoading) {
-    return <p>loading....</p>;
+    return <Loading></Loading>;
   }
 
   const handleDeleteProduct = (id) => {
-    const confirmed = window.confirm("Sure to delete?");
-    if (confirmed) {
-      fetch(`https://radiant-fortress-52880.herokuapp.com/tools/${id}`, {
-        method: "DELETE",
-        headers: {
-          "content-type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          refetch();
-          console.log(data);
-          toast.success("successfully deleted");
-        });
-    }
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://radiant-fortress-52880.herokuapp.com/tools/${id}`, {
+          method: "DELETE",
+          headers: {
+            "content-type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            refetch();
+            Swal.fire("Deleted!", "Product has been deleted.", "success");
+            toast.success("Product deleted");
+            console.log(data);
+          });
+      }
+    });
   };
   return (
     <div>

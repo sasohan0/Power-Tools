@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 import auth from "../../firebase.init";
 
 const Suggestions = () => {
@@ -13,19 +14,27 @@ const Suggestions = () => {
       opinion: opinion,
     };
     e.preventDefault();
-    await fetch("https://radiant-fortress-52880.herokuapp.com/suggestions", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(suggestion),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+    if (email && opinion) {
+      await fetch("https://radiant-fortress-52880.herokuapp.com/suggestions", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(suggestion),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
 
-        toast.success("suggestion added.You are awesome !");
+          toast.success("suggestion added.You are awesome !");
+        });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please fill out the form first",
       });
+    }
   };
   return (
     <div

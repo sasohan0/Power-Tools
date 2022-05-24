@@ -1,17 +1,20 @@
 import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
-
+  const navigate = useNavigate();
   const logout = () => {
     signOut(auth);
     localStorage.removeItem("accessToken");
   };
 
+  const handleDashBoardIcon = () => {
+    navigate("/dashboard");
+  };
   const menuItems = (
     <>
       <li>
@@ -75,16 +78,19 @@ const Navbar = () => {
             {menuItems}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">Power Tools</a>
+        <a href="/" className="btn btn-ghost normal-case text-xl">
+          Power Tools
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
       <div className="navbar-end">
         <label
+          onClick={handleDashBoardIcon}
           tabIndex="1"
           htmlFor="dashboard-sidebar"
-          className="btn btn-ghost lg:hidden"
+          className="btn btn-ghost text-purple-900 lg:hidden"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

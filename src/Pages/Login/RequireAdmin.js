@@ -5,6 +5,7 @@ import { Navigate, useLocation } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import useAdmin from "../Hooks/useAdmin";
 import auth from "../../firebase.init";
+import Loading from "../Shared/Loading";
 
 const RequireAdmin = ({ children }) => {
   const [user, loading] = useAuthState(auth);
@@ -12,7 +13,7 @@ const RequireAdmin = ({ children }) => {
   const location = useLocation();
 
   if (loading || adminLoading) {
-    return <p>loading...</p>;
+    return <Loading></Loading>;
   }
 
   if (!user || !admin) {

@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const AddProduct = () => {
   const {
@@ -20,25 +21,37 @@ const AddProduct = () => {
       available: parseInt(data.available),
       price: parseInt(data.price),
     };
-
+    Swal.fire({
+      title: "Are you sure to add product?",
+      text: "You can delete it anytime!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch("https://radiant-fortress-52880.herokuapp.com/tools", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+          body: JSON.stringify(product),
+        })
+          .then((res) => res.json())
+          .then((inserted) => {
+            if (inserted.insertedId) {
+              Swal.fire("Added!", "Your Product has been added.", "success");
+              toast.success("Product added successfully");
+              reset();
+            } else {
+              toast.error("Failed to add the Product");
+            }
+          });
+      }
+    });
     // send to your database
-    fetch("https://radiant-fortress-52880.herokuapp.com/tools", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify(product),
-    })
-      .then((res) => res.json())
-      .then((inserted) => {
-        if (inserted.insertedId) {
-          toast.success("Product added successfully");
-          reset();
-        } else {
-          toast.error("Failed to add the Product");
-        }
-      });
   };
 
   return (
@@ -51,7 +64,7 @@ const AddProduct = () => {
           </label>
           <input
             type="text"
-            placeholder="Your Name"
+            placeholder="Product Name"
             className="input input-bordered w-full max-w-xs"
             {...register("name", {
               required: {

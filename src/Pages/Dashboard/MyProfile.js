@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 import auth from "../../firebase.init";
 
 const MyProfile = () => {
@@ -40,21 +42,34 @@ const MyProfile = () => {
       education: education,
       linkedIn: linkedIn,
     };
-    console.log(email);
-    await fetch(
-      `https://radiant-fortress-52880.herokuapp.com/users?email=${email}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(profile),
+
+    Swal.fire({
+      title: "Are you sure to update?",
+      text: "You can update anytime",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(
+          `https://radiant-fortress-52880.herokuapp.com/users?email=${email}`,
+          {
+            method: "PUT",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(profile),
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            Swal.fire("Updated!", "Your profile has been updated.", "success");
+            toast.success("successfully updated");
+          });
       }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        alert("successfully updated");
-      });
+    });
   };
   return (
     <div className="my-20">
@@ -171,7 +186,7 @@ const MyProfile = () => {
             </label>
           </div>
           <input
-            className="btn btn-success w-full mt-4 hover:bg-red-800"
+            className="btn btn-black w-full mt-4 hover:bg-red-800"
             type="submit"
             value="Update Profile"
           />

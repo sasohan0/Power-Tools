@@ -9,7 +9,7 @@ const Portfolio = () => {
         backgroundImage: `url(${background})`,
       }}
     >
-      <div className="hero-overlay bg-opacity-80"></div>
+      <div className="hero-overlay bg-opacity-50"></div>
       <div className="hero-content  text-neutral-content">
         <div className="max-w-md text-white ">
           <h1 className="mb-5 text-5xl text-red-200 font-bold text-center">

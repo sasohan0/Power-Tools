@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery } from "react-query";
+import Loading from "../Shared/Loading";
 
 import User from "./User";
 
@@ -17,7 +18,7 @@ const Users = () => {
     }).then((res) => res.json())
   );
   if (isLoading) {
-    return <p>loading....</p>;
+    return <Loading></Loading>;
   }
   return (
     <div>

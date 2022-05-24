@@ -3,6 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
+import Swal from "sweetalert2";
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -34,24 +35,34 @@ const MyOrders = () => {
   }, [user, orders]);
 
   const handleOrderCancel = (id) => {
-    const confirmed = window.confirm("Sure to cancel?");
-    if (confirmed) {
-      fetch(`https://radiant-fortress-52880.herokuapp.com/orders/${id}`, {
-        method: "DELETE",
-        headers: {
-          "content-type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-        });
-    }
+    Swal.fire({
+      title: "Are you sure to cancel order?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://radiant-fortress-52880.herokuapp.com/orders/${id}`, {
+          method: "DELETE",
+          headers: {
+            "content-type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
+        Swal.fire("Canceled!", "Your order has been canceled.", "success");
+      }
+    });
   };
 
   return (
     <div>
-      <h2 className="flex justify-center text-3xl">
+      <h2 className="flex justify-center text-3xl mb-4">
         My Orders: {orders.length}
       </h2>
       <div className="overflow-x-auto ">
@@ -61,9 +72,9 @@ const MyOrders = () => {
               <th></th>
               <th>Photo</th>
 
-              <th className="sm:hidden  ">Product</th>
-              <th className="sm:hidden">Quantity</th>
-              <th>Total</th>
+              <th className="hidden sm:flex"></th>
+              <th className="hidden sm:flex"></th>
+              <th className="hidden sm:flex"></th>
               <th>Payment</th>
             </tr>
           </thead>
@@ -79,9 +90,9 @@ const MyOrders = () => {
                   />
                 </td>
 
-                <td className="sm:hidden ">{order?.name}</td>
-                <td className="sm:hidden ">{order?.orderQuantity}</td>
-                <td>{order?.totalPrice}</td>
+                <td className="hidden sm:flex">{order?.name}</td>
+                <td className="hidden sm:flex">{order?.orderQuantity}</td>
+                <td className="hidden sm:flex">{order?.totalPrice}</td>
                 <td>
                   {order?.totalPrice && !order?.paid && (
                     <>
