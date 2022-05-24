@@ -13,19 +13,16 @@ const Reviews = () => {
       });
   }, [reviews]);
   return (
-    <div>
+    <div id="reviews">
       <h1 className="flex justify-center text-black text-4xl mt-5">
         Customer Reviews
       </h1>
-      <div
-        className="mt-10  scroll-pl-6 bg-slate-600 rounded p-8 pr-4 overflow-y-auto h-96"
-        id="reviews"
-      >
+      <div className="mt-10  scroll-pl-6 bg-slate-600 rounded p-0 sm:p-8 pr-0 sm:pr-4 overflow-y-auto h-96">
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {reviews.map((review) => (
             <div
               key={review._id}
-              className="card w-72 mx-auto bg-base-100 shadow-xl"
+              className="card  w-60 sm:w-72 mx-auto bg-base-100 shadow-xl"
             >
               <div className="card-body ">
                 <h2 className="card-title">{review.customerName}</h2>

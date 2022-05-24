@@ -63,7 +63,7 @@ const MyProfile = () => {
         <span className="font-bold">{user?.displayName}</span>{" "}
       </h1>
       <div>
-        <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card w-64 sm:w-96 bg-base-100 shadow-xl">
           <div className="card-body">
             <h2 className="card-title">Profile</h2>
             <p>

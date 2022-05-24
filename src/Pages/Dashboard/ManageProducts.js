@@ -46,7 +46,7 @@ const ManageProducts = () => {
   return (
     <div>
       <h2 className="flex justify-center text-3xl">
-        All Product: {tools.length}
+        All Products: {tools.length}
       </h2>
       <div className="overflow-x-auto ">
         <table className="table w-full">
@@ -55,10 +55,10 @@ const ManageProducts = () => {
               <th></th>
               <th>Photo</th>
 
-              <th className="  ">Product</th>
-              <th className="sm:hidden">Quantity</th>
-              <th>available</th>
-              <th>Payment</th>
+              <th className=" hidden sm:flex"></th>
+              <th className="hidden sm:flex"></th>
+              <th className="hidden sm:flex"></th>
+              <th>Manage</th>
             </tr>
           </thead>
           <tbody>
@@ -73,9 +73,9 @@ const ManageProducts = () => {
                   />
                 </td>
 
-                <td className=" ">{tool?.name}</td>
-                <td className="sm:hidden ">{tool?.price}</td>
-                <td>{tool?.available}</td>
+                <td className="hidden sm:flex"> {tool?.name}</td>
+                <td className="hidden sm:flex ">${tool?.price}</td>
+                <td className="hidden sm:flex">available {tool?.available}</td>
                 <td>
                   <button
                     onClick={() => handleDeleteProduct(tool._id)}

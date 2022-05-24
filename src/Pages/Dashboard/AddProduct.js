@@ -12,7 +12,7 @@ const AddProduct = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const doctor = {
+    const product = {
       name: data.name,
       img: data.image,
       shortDescription: data.shortDescription,
@@ -28,7 +28,7 @@ const AddProduct = () => {
         "content-type": "application/json",
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
-      body: JSON.stringify(doctor),
+      body: JSON.stringify(product),
     })
       .then((res) => res.json())
       .then((inserted) => {
@@ -43,7 +43,7 @@ const AddProduct = () => {
 
   return (
     <div>
-      <h2 className="text-2xl">Add a New Doctor</h2>
+      <h2 className="text-2xl">Add a New Product</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-control w-full max-w-xs">
           <label className="label">

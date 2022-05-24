@@ -26,19 +26,21 @@ const Portfolio = () => {
           </p>
           <p className="ml-8 mt-4">
             <span className="text-red-200 font-bold">Education</span> :{" "}
-            <p className="text-center">
-              BSS Hons 2nd Year <br />
-              HSC in Science (5.00) <br />
-              SSC in Science (5.00)
-            </p>
           </p>
+          <p className="text-center">
+            BSS Hons 2nd Year <br />
+            HSC in Science (5.00) <br />
+            SSC in Science (5.00)
+          </p>
+
           <p className="ml-8 mt-4">
-            <span className="text-red-200 font-bold">Expertise</span> :
-            <p className="text-center">
-              MongoDB,ExpressJS, <br /> ReactJS , NodeJS (MERN Stack), <br />
-              Bootstrap, Tailwind ,Stripe,etc
-            </p>
+            <span className="text-red-200 font-bold">Expertise</span> :{" "}
           </p>
+          <p className="text-center">
+            MongoDB,ExpressJS, <br /> ReactJS , NodeJS (MERN Stack), <br />
+            Bootstrap, Tailwind ,Stripe,etc
+          </p>
+
           <p className="ml-8 mt-4">
             <span className="text-red-200 font-bold">My Projects</span> :{" "}
             <span className=" ml-20 flex flex-col  align-center ">

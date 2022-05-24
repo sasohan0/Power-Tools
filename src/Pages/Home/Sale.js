@@ -16,10 +16,12 @@ const Sale = () => {
             <h1 className="text-5xl text-white font-bold">
               Mid Year Sale Ends In
             </h1>
-            <Countdown
-              className="countdown text-red-400 bg-slate-800 rounded-lg font-mono text-5xl mt-5"
-              date={Date.now() + 1000000000}
-            />{" "}
+            <p>
+              <Countdown
+                className="countdown text-red-400 bg-slate-800 rounded-lg font-mono text-2xl sm:text-4xl mt-5"
+                date={Date.now() + 1000000000}
+              />{" "}
+            </p>
             <br />
             <a href="#products " className="btn btn-dark mt-5 text-white">
               Order Now

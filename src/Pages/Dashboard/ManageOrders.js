@@ -13,7 +13,7 @@ const ManageOrders = () => {
 
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/adminOrders`, {
+      fetch(`https://radiant-fortress-52880.herokuapp.com/adminOrders`, {
         method: "GET",
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -39,14 +39,17 @@ const ManageOrders = () => {
     };
     const confirmed = window.confirm("sure to approve?");
     if (confirmed) {
-      await fetch(`http://localhost:5000/adminOrders/${id}`, {
-        method: "PATCH",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-        body: JSON.stringify(shipped),
-      })
+      await fetch(
+        `https://radiant-fortress-52880.herokuapp.com/adminOrders/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+          body: JSON.stringify(shipped),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           toast.success("order approved for shipping");
@@ -58,7 +61,7 @@ const ManageOrders = () => {
   const handleOrderCancel = (id) => {
     const confirmed = window.confirm("Sure to cancel?");
     if (confirmed) {
-      fetch(`http://localhost:5000/orders/${id}`, {
+      fetch(`https://radiant-fortress-52880.herokuapp.com/orders/${id}`, {
         method: "DELETE",
         headers: {
           "content-type": "application/json",
@@ -77,6 +80,23 @@ const ManageOrders = () => {
       <h2 className="flex justify-center text-3xl">
         All Orders: {orders.length}
       </h2>
+      <p className="text-red-600 block sm:hidden ">
+        Please scroll right to manage orders
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6 "
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M17 8l4 4m0 0l-4 4m4-4H3"
+          />
+        </svg>
+      </p>
       <div className="overflow-x-auto ">
         <table className="table w-full">
           <thead>
@@ -87,7 +107,7 @@ const ManageOrders = () => {
               <th className="sm:hidden  ">Product</th>
               <th className="sm:hidden">Quantity</th>
               <th>Total</th>
-              <th>Payment</th>
+              <th>Manage</th>
             </tr>
           </thead>
           <tbody>

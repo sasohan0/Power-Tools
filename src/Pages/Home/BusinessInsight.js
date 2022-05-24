@@ -8,8 +8,8 @@ const BusinessInsight = () => {
       }}
       className="hero min-h-screen"
     >
-      <div className="  p-8 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        <div className="card w-72 bg-purple-900 bg-opacity-90 shadow-xl">
+      <div className=" p-0 sm:p-8 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="card w-60 sm:w-72 bg-purple-900 bg-opacity-90 shadow-xl">
           <div className="card-body">
             <h2 className="card-title text-white">Top Manufacturer !</h2>
             <p className="text-slate-200">
@@ -31,7 +31,7 @@ const BusinessInsight = () => {
             </div>
           </div>
         </div>
-        <div className="card w-72 bg-purple-900 bg-opacity-90  shadow-xl">
+        <div className="card w-60 sm:w-72 bg-purple-900 bg-opacity-90  shadow-xl">
           <div className="card-body">
             <h2 className="card-title text-white">Best in Quality !</h2>
             <p className="text-slate-200">
@@ -55,7 +55,7 @@ const BusinessInsight = () => {
             </div>
           </div>
         </div>
-        <div className="card w-72 bg-purple-900 bg-opacity-90  shadow-xl">
+        <div className="card  w-60 sm:w-72 bg-purple-900 bg-opacity-90  shadow-xl">
           <div className="card-body">
             <h2 className="card-title text-white">Sincere About Your Time !</h2>
             <p className="text-slate-200">On Time shipping !!</p>

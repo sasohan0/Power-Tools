@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import useAdmin from "../Hooks/useAdmin";
 
-const User = ({ user, refetch }) => {
+const User = ({ user, refetch, index }) => {
   const [user1] = useAuthState(auth);
   const [admin, adminLoading] = useAdmin(user1);
   const { email, role } = user;
@@ -30,19 +30,16 @@ const User = ({ user, refetch }) => {
   };
   return (
     <tr>
-      <th>1</th>
+      <th>{index + 1}</th>
       <td>{email}</td>
       <td>
         {role !== "admin" ? (
-          <button onClick={handleMakeAdmin} className="btn btn-xs">
+          <button onClick={handleMakeAdmin} className="btn btn-xs btn-success">
             Assign Admin
           </button>
         ) : (
-          <button className="btn btn-xs bg-red-800">ADMIN</button>
+          <button className="btn btn-xs bg-purple-900">ADMIN</button>
         )}
-      </td>
-      <td>
-        <button className="btn btn-xs">Remove User</button>
       </td>
     </tr>
   );
