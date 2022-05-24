@@ -67,21 +67,22 @@ const MyProfile = () => {
           <div className="card-body">
             <h2 className="card-title">Profile</h2>
             <p>
-              <span className="text-primary">Email</span> : {user?.email}
+              <span className="text-purple-900">Email</span> : {user?.email}
             </p>
             <p>
-              <span className="text-primary">Location</span> :{" "}
+              <span className="text-purple-900">Location</span> :{" "}
               {profile[0]?.location}
             </p>
             <p>
-              <span className="text-primary">Phone</span> : {profile[0]?.phone}
+              <span className="text-purple-900">Phone</span> :{" "}
+              {profile[0]?.phone}
             </p>
             <p>
-              <span className="text-primary">Education</span> :{" "}
+              <span className="text-purple-900">Education</span> :{" "}
               {profile[0]?.education}
             </p>
             <p>
-              <span className="text-primary">LinkedIn Profile</span> :{" "}
+              <span className="text-purple-900">LinkedIn Profile</span> :{" "}
               <a
                 className="text-red-400"
                 href="http://"

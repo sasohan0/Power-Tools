@@ -12,7 +12,7 @@ const Tools = () => {
   return (
     <div id="products" className="my-28">
       <div className="text-center">
-        <h3 className="text-primary  text-4xl font-bold uppercase mb-5">
+        <h3 className="text-purple-900  text-4xl font-bold uppercase mb-5">
           Our Products
         </h3>
       </div>

@@ -31,7 +31,7 @@ const Navbar = () => {
             <Link to="/dashboard">Dashboard</Link>
           </li>
           <li>
-            <Link className="text-primary" to="/dashboard">
+            <Link className="text-purple-900" to="/dashboard">
               {user?.email}
             </Link>
           </li>

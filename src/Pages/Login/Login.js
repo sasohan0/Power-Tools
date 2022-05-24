@@ -129,7 +129,7 @@ const Login = () => {
           <p>
             <small>
               New to Power Tools?{" "}
-              <Link className="text-primary" to="/signup">
+              <Link className="text-purple-900" to="/signup">
                 Register here
               </Link>
             </small>

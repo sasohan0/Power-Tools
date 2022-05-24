@@ -10,7 +10,7 @@ const Sale = () => {
           backgroundImage: `url("sale.jpg")`,
         }}
       >
-        <div className="hero-overlay bg-opacity-60"></div>
+        <div className="hero-overlay bg-opacity-50"></div>
         <div className="hero-content text-center text-neutral-content">
           <div className="max-w-md">
             <h1 className="text-5xl text-white font-bold">

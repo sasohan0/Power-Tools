@@ -35,7 +35,7 @@ const Suggestions = () => {
           backgroundImage: `url("suggestion.jpg")`,
         }}
       >
-        <div className="hero-overlay bg-opacity-60"></div>
+        <div className="hero-overlay bg-opacity-40"></div>
         <div className="hero-content text-center text-neutral-content ">
           <div className="max-w-md bg-gradient-to-r from-slate-500 to-transparent p-4 rounded-lg">
             <h1 className="text-5xl text-white  font-bold">Your Suggestions</h1>
