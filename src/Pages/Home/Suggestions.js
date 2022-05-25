@@ -63,6 +63,7 @@ const Suggestions = () => {
                 <input
                   type="text"
                   name="email"
+                  required
                   defaultValue={user && user.email}
                   placeholder="email or name"
                   className="input input-bordered"
@@ -75,6 +76,7 @@ const Suggestions = () => {
                 <textarea
                   type="text"
                   name="opinion"
+                  required
                   placeholder="suggestion"
                   className="input input-bordered"
                 />
