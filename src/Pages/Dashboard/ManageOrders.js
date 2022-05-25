@@ -17,7 +17,7 @@ const ManageOrders = () => {
       fetch(`https://radiant-fortress-52880.herokuapp.com/adminOrders`, {
         method: "GET",
         headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          "authorization": `Bearer ${localStorage.getItem("accessToken")}`,
         },
       })
         .then((res) => {
@@ -54,7 +54,7 @@ const ManageOrders = () => {
             method: "PATCH",
             headers: {
               "content-type": "application/json",
-              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+              "authorization": `Bearer ${localStorage.getItem("accessToken")}`,
             },
             body: JSON.stringify(shipped),
           }

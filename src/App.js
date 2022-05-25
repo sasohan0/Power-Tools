@@ -20,6 +20,7 @@ import Payment from "./Pages/Dashboard/Payment";
 import ManageOrders from "./Pages/Dashboard/ManageOrders";
 import Blogs from "./Pages/Blogs/Blogs";
 import Portfolio from "./Pages/Portfolio/Portfolio";
+import NotFound from "./Pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -87,6 +88,7 @@ function App() {
             }
           ></Route>
         </Route>
+        <Route path="*" element={<NotFound></NotFound>} />
       </Routes>
 
       <ToastContainer />

@@ -18,7 +18,7 @@ const MyOrders = () => {
         {
           method: "GET",
           headers: {
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            "authorization": `Bearer ${localStorage.getItem("accessToken")}`,
           },
         }
       )
@@ -91,8 +91,8 @@ const MyOrders = () => {
                 </td>
 
                 <td className="hidden sm:flex">{order?.name}</td>
-                <td className="hidden sm:flex">{order?.orderQuantity}</td>
-                <td className="hidden sm:flex">{order?.totalPrice}</td>
+                <td className="hidden sm:flex">{order?.orderQuantity} pieces</td>
+                <td className="hidden sm:flex"> ${order?.totalPrice}</td>
                 <td>
                   {order?.totalPrice && !order?.paid && (
                     <>
@@ -112,7 +112,7 @@ const MyOrders = () => {
                   {order?.totalPrice && order?.paid && (
                     <div>
                       <p>
-                        <span className="text-success">Already Paid</span>
+                        <span className="text-success">{order?.shipped? 'Approved for shipping':'Already Paid' }</span>
                       </p>
                       <p>
                         Transaction id: <br />

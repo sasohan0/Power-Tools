@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
-import Swal from "sweetalert2";
 import auth from "../../firebase.init";
 
 const MyProfile = () => {
@@ -9,22 +8,19 @@ const MyProfile = () => {
   const [profile, setProfile] = useState([]);
 
   useEffect(() => {
-    if (user) {
-      fetch(
-        `https://radiant-fortress-52880.herokuapp.com/users?email=${user.email}`,
-        {
-          method: "GET",
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
-      )
+    
+      fetch(`https://radiant-fortress-52880.herokuapp.com/users?email=${user.email}`, {
+        method: "GET",
+        headers: {
+          "authorization": `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
           setProfile(data);
         });
-    }
+    
   }, [user, profile]);
 
   const handleUpdateProfile = async (e) => {
@@ -42,34 +38,24 @@ const MyProfile = () => {
       education: education,
       linkedIn: linkedIn,
     };
-
-    Swal.fire({
-      title: "Are you sure to update?",
-      text: "You can update anytime",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(
-          `https://radiant-fortress-52880.herokuapp.com/users?email=${email}`,
-          {
-            method: "PUT",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(profile),
-          }
-        )
-          .then((res) => res.json())
-          .then((data) => {
-            Swal.fire("Updated!", "Your profile has been updated.", "success");
-            toast.success("successfully updated");
-          });
-      }
-    });
+    
+    if (email && location && phone && education && linkedIn) {
+      await fetch(
+        `https://radiant-fortress-52880.herokuapp.com/users?email=${email}`,
+        {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(profile),
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          toast.success("successfully updated");
+        });
+    }
+    
   };
   return (
     <div className="my-20">
@@ -138,6 +124,7 @@ const MyProfile = () => {
               <input
                 name="location"
                 type="text"
+                required
                 placeholder="your city and district"
                 className="input input-bordered"
               />
@@ -152,6 +139,7 @@ const MyProfile = () => {
               <input
                 name="phone"
                 type="number"
+                required
                 placeholder="your cell no"
                 className="input input-bordered"
               />
@@ -166,6 +154,7 @@ const MyProfile = () => {
               <input
                 name="education"
                 type="text"
+                required
                 placeholder="your education"
                 className="input input-bordered"
               />
@@ -180,6 +169,7 @@ const MyProfile = () => {
               <input
                 name="linkedIn"
                 type="text"
+                required
                 placeholder="your LinkedIn Profile"
                 className="input input-bordered"
               />

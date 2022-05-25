@@ -25,7 +25,7 @@ const User = ({ user, refetch, index }) => {
           {
             method: "PUT",
             headers: {
-              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+              "authorization": `Bearer ${localStorage.getItem("accessToken")}`,
             },
           }
         )

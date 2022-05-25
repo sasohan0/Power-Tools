@@ -9,6 +9,22 @@ const Purchase = () => {
   const [user, loading] = useAuthState(auth);
   const { toolId } = useParams();
   const [toolDetail, setToolDetail] = useState({});
+  const [quantity,setQuantity]=useState(0)
+  const [disabled,setDisabled]=useState(true)
+
+  useEffect(()=>{
+    
+      if (quantity <= toolDetail.available && quantity >= toolDetail.minOrder) {
+        setDisabled(false);
+        console.log(quantity);
+        console.log(disabled);
+      }
+      else if (quantity > toolDetail.available || quantity < toolDetail.minOrder) {
+        setDisabled(true);
+        console.log(disabled);
+        console.log(quantity);
+      }
+  },[quantity])
 
   useEffect(() => {
     const url = `https://radiant-fortress-52880.herokuapp.com/tools/${toolId}`;
@@ -146,6 +162,7 @@ const Purchase = () => {
                 />
 
                 <input
+                  onChange={(e)=>{setQuantity(e.target.value)}}
                   id="order-quantity"
                   name="orderQuantity"
                   type="number"
@@ -158,6 +175,7 @@ const Purchase = () => {
 
               <input
                 type="submit"
+                disabled={disabled}
                 value="Place Order"
                 className="btn btn-dark w-full"
               />
