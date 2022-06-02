@@ -79,7 +79,7 @@ const Navbar = () => {
           </ul>
         </div>
         <a href="/" className="btn btn-ghost normal-case text-xl">
-          Power Tools
+         <img className="mr-1" src="favicon.ico" alt="" /> Power Tools
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
